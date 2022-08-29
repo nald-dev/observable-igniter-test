@@ -5,25 +5,10 @@ import { SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-na
 import { observer } from "mobx-react-lite"
 import { useStores } from '../../models'
 
-const possibleNewUsers = [
-    {
-        username: 'Reynald',
-        email: 'reynald@example.com'
-    },
-    {
-        username: 'Prabha',
-        email: 'prabha@example.com'
-    },
-    {
-        username: 'Nova',
-        email: 'nova@example.com'
-    },
-]
-
 export const MyScreen = observer(
     () => {
         const { userStore } = useStores()
-        const { users, addUser } = userStore
+        const { users, addUser, clearUsers } = userStore
 
         return (
             <SafeAreaView
@@ -67,25 +52,50 @@ export const MyScreen = observer(
                     }
                 </ScrollView>
 
-                <TouchableOpacity
-                    onPress={addUser}
+                <View
                     style = {{ 
-                        backgroundColor: 'green',
-                        borderRadius: 10,
-                        margin: 20,
+                        padding: 20
                      }}
                 >
-                    <Text
+                    <TouchableOpacity
+                        onPress={addUser}
                         style = {{ 
-                            color: 'white',
-                            fontWeight: 'bold',
-                            padding: 20,
-                            textAlign: 'center'
-                         }}
+                            backgroundColor: 'green',
+                            borderRadius: 10,
+                        }}
                     >
-                        Add More User
-                    </Text>
-                </TouchableOpacity>
+                        <Text
+                            style = {{ 
+                                color: 'white',
+                                fontWeight: 'bold',
+                                padding: 20,
+                                textAlign: 'center'
+                            }}
+                        >
+                            Add More User
+                        </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={clearUsers}
+                        style = {{ 
+                            backgroundColor: 'green',
+                            borderRadius: 10,
+                            marginTop: 20,
+                        }}
+                    >
+                        <Text
+                            style = {{ 
+                                color: 'white',
+                                fontWeight: 'bold',
+                                padding: 20,
+                                textAlign: 'center'
+                            }}
+                        >
+                            Clear Users
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             </SafeAreaView>
         )
     }

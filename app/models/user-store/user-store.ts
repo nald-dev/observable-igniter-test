@@ -14,11 +14,15 @@ export const UserStoreModel = types
   })
   .extend(withEnvironment)
   .actions((self) => ({
+    clearUsers: () => {
+      self.users = []
+    },
     applyUsers: (newUser: any) => {
       self.users = self.users.concat([newUser])
     },
   }))
   .actions((self) => ({
+    clearUsers: self.clearUsers,
     addUser: () => {
       const possibleNewUsers = [
         {
